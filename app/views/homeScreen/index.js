@@ -1,10 +1,18 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
+import HeaderText from "../../components/header";
+import RandomNewsItem from "../../components/randomNewsItem";
 
 const HomeScreen = () => {
     return(
-        <View style={{backgroundColor: 'red'}}>
-            <Text style={{fontSize: 42}}>SOME TEXT</Text>
+        <View style={{flex: 1}}>
+            <HeaderText />
+            <ScrollView style={{paddingVertical: 10, backgroundColor: 'orange'}}>
+                <RandomNewsItem />
+                <RandomNewsItem />
+                <RandomNewsItem />
+                <RandomNewsItem />
+            </ScrollView>
         </View>
     );
 }
