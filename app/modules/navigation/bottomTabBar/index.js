@@ -3,37 +3,42 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../../../views/homeScreen/index.js';
 import FavourtesScreen from '../../../views/favouritesScreen.js';
 import SearchScreen from '../../../views/searchScreen/index.js';
+import HomeSVG from "../../../assets/svg/homeSVG";
+import SearchSVG from "../../../assets/svg/seachSVG";
+import FavouritesSVG from "../../../assets/svg/favouritesSVG";
+import { ROUTES } from "../../../services/routes";
 
 const BottomTabBar = createBottomTabNavigator();
 
 const BottomTabNavigator = () => (
     <BottomTabBar.Navigator
         tabBarOptions={{
-            activeTintColor: 'red',
-            safeAreaInsets: {bottom: 10},
             style: {backgroundColor: 'pink', height: 60},
+            showLabel: false,
+            activeBackgroundColor: 'yellow',
+            inactiveBackgroundColor: 'white'
         }}
     >
         <BottomTabBar.Screen 
-            name={'4'}
+            name={ROUTES.HomeScreen}
             options={{
-                tabBarLabel: 'Home',
+                tabBarIcon: ({focused}) => <HomeSVG color={focused ? 'black' : 'gray'} />
             }}
         >
             {() => <HomeScreen />}
         </BottomTabBar.Screen>
         <BottomTabBar.Screen 
-            name={'5'}
+            name={ROUTES.SearchScreen}
             options={{
-                tabBarLabel: 'Second',
+                tabBarIcon: ({focused}) => <SearchSVG color={focused ? 'black' : 'gray'} />
             }}
         >
             {() => <SearchScreen />}
         </BottomTabBar.Screen>
         <BottomTabBar.Screen 
-            name={'6'}
+            name={ROUTES.FavourtesScreen}
             options={{
-                tabBarLabel: '45454',
+                tabBarIcon: ({focused}) => <FavouritesSVG color={focused ? 'black' : 'gray'} />
             }}
         >
             {() => <FavourtesScreen />}
