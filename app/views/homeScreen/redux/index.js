@@ -1,13 +1,15 @@
+import { constants } from "./ationTypes";
+
 const initialState = {
-    tempValue: 0,
+    randomNewsItems: [],
 }
 
-export const tempReducer = (state = initialState, action) => {
+export const reducerHomeScreen = (state = initialState, action) => {
     switch(action.type) {
-        case 'TEMP_ACTION':
+        case constants.SET_RANDOM_NEWS_ITEMS:
             return {
                 ...state,
-                tempValue: action.data
+                randomNewsItems: action.data
             }
     }
     return state;

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { tempReducer } from "../../../views/homeScreen/redux";
+import { reducerHomeScreen } from "../../../views/homeScreen/redux";
 
 const rootReducer = combineReducers({
-    tempReducer,
+    reducerHomeScreen,
 });
 
 export default rootReducer;
