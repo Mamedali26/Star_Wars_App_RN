@@ -5,7 +5,7 @@ import HeaderText from "../../components/header";
 import RandomNewsItem from "../../components/randomNewsItem/randomNewsItem";
 import { setHomeScreenSaga } from "./saga/action";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const randomNewsItems = useSelector(state => state.reducerHomeScreen.randomNewsItems, shallowEqual);
 
@@ -20,6 +20,7 @@ const HomeScreen = () => {
                     return <RandomNewsItem 
                         key={index}
                         item={item}
+                        navigation={navigation}
                     />
                 })}
             </ScrollView>

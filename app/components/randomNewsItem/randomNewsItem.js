@@ -3,8 +3,9 @@ import { View, Image, Text, TouchableOpacity } from "react-native";
 import { getRightCategoryForImage, getNumberForImage, getRightImage } from "./logic";
 import { styles } from './styles';
 import { imgLink } from "../../services/restApi";
+import { ROUTES } from "../../services/routes";
 
-const RandomNewsItem = ({ item }) => {
+const RandomNewsItem = ({ item, navigation }) => {
 
     return (
         <View style={{marginVertical: 5, justifyContent: 'center', alignItems: 'center'}}>
@@ -17,7 +18,10 @@ const RandomNewsItem = ({ item }) => {
             <Text style={styles.itemName}>
                 {item?.name ? item?.name : item?.title}
             </Text>
-            <TouchableOpacity style={styles.clickForMoreBtn}>
+            <TouchableOpacity 
+                style={styles.clickForMoreBtn}
+                onPress={() => navigation.navigate(ROUTES.RandomNewsItemScreen)}
+            >
                 <Text style={styles.clickForMoreBtnText}>Click To See More!</Text>
             </TouchableOpacity>
         </View>

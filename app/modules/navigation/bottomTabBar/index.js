@@ -1,12 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../../../views/homeScreen/index.js';
 import FavourtesScreen from '../../../views/favouritesScreen.js';
 import SearchScreen from '../../../views/searchScreen/index.js';
 import HomeSVG from "../../../assets/svg/homeSVG";
 import SearchSVG from "../../../assets/svg/seachSVG";
 import FavouritesSVG from "../../../assets/svg/favouritesSVG";
 import { ROUTES } from "../../../services/routes";
+import { HomeScreenStack } from '../stackNavigation/randomNewsItemStack/index.js';
 
 const BottomTabBar = createBottomTabNavigator();
 
@@ -25,7 +25,7 @@ const BottomTabNavigator = () => (
                 tabBarIcon: ({focused}) => <HomeSVG color={focused ? 'black' : 'gray'} />
             }}
         >
-            {() => <HomeScreen />}
+            {() => <HomeScreenStack />}
         </BottomTabBar.Screen>
         <BottomTabBar.Screen 
             name={ROUTES.SearchScreen}
