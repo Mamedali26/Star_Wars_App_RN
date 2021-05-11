@@ -20,7 +20,7 @@ export const HomeScreenStack = () => {
           options={{
             headerTitle: false, 
             headerStyle: {
-              backgroundColor: 'red',
+              backgroundColor: 'white',
             },
           }}
         />

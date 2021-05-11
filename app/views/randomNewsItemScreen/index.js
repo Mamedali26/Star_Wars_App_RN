@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import { shallowEqual, useSelector } from "react-redux";
+import DetailedItemInfo from "../../components/detailedItemInfo";
 
 const RandomNewsItemScreen = () => {
 
@@ -8,9 +9,11 @@ const RandomNewsItemScreen = () => {
     const chosenItem = useSelector(state => state.reducerHomeScreen.chosenItem, shallowEqual);
 
     return (
-        <View>
-            <Image source={{uri: chosenItemImage}} style={{width: 100, height: 100}} />
-            <Text>{chosenItem?.name ? chosenItem?.name : chosenItem?.title}</Text>
+        <View style={{flex: 1, alignItems: 'center'}}>
+            <DetailedItemInfo 
+                chosenItemImage={chosenItemImage}
+                chosenItem={chosenItem}
+            />
         </View>
     );
 }
