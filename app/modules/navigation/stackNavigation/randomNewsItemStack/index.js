@@ -1,16 +1,29 @@
 import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import { ROUTES } from "../../../../services/routes";
-import HomeScreen from "../../../../views/homeScreen";
 import RandomNewsItemScreen from "../../../../views/randomNewsItemScreen";
+import BottomTabNavigator from "../../../navigation/bottomTabBar";
 
 const RandomNewsItemNav = createStackNavigator();
 
 export const HomeScreenStack = () => {
     return(
       <RandomNewsItemNav.Navigator>
-        <RandomNewsItemNav.Screen name={ROUTES.HomeScreen} component={HomeScreen}/> 
-        <RandomNewsItemNav.Screen name={ROUTES.RandomNewsItemScreen} component={RandomNewsItemScreen}/>
+        <RandomNewsItemNav.Screen 
+          name={ROUTES.HomeScreen} 
+          component={BottomTabNavigator}
+          options={{headerShown: false}}
+        /> 
+        <RandomNewsItemNav.Screen 
+          name={ROUTES.RandomNewsItemScreen} 
+          component={RandomNewsItemScreen}
+          options={{
+            headerTitle: false, 
+            headerStyle: {
+              backgroundColor: 'red',
+            },
+          }}
+        />
       </RandomNewsItemNav.Navigator>
     );
   }

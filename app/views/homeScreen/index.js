@@ -21,6 +21,7 @@ const HomeScreen = ({ navigation }) => {
                         key={index}
                         item={item}
                         navigation={navigation}
+                        index={index}
                     />
                 })}
             </ScrollView>

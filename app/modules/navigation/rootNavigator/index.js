@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import BottomTabNavigator from '../bottomTabBar';
+import { HomeScreenStack } from '../stackNavigation/randomNewsItemStack';
 
 const RootNavigator = () => (
     <NavigationContainer>
-        <BottomTabNavigator />
+        <HomeScreenStack />
     </NavigationContainer>
 );
 

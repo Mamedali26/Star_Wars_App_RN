@@ -6,11 +6,11 @@ import HomeSVG from "../../../assets/svg/homeSVG";
 import SearchSVG from "../../../assets/svg/seachSVG";
 import FavouritesSVG from "../../../assets/svg/favouritesSVG";
 import { ROUTES } from "../../../services/routes";
-import { HomeScreenStack } from '../stackNavigation/randomNewsItemStack/index.js';
+import HomeScreen from '../../../views/homeScreen/index.js';
 
 const BottomTabBar = createBottomTabNavigator();
 
-const BottomTabNavigator = () => (
+const BottomTabNavigator = ({ navigation }) => (
     <BottomTabBar.Navigator
         tabBarOptions={{
             style: {backgroundColor: 'pink', height: 60},
@@ -25,7 +25,7 @@ const BottomTabNavigator = () => (
                 tabBarIcon: ({focused}) => <HomeSVG color={focused ? 'black' : 'gray'} />
             }}
         >
-            {() => <HomeScreenStack />}
+            {() => <HomeScreen navigation={navigation} />}
         </BottomTabBar.Screen>
         <BottomTabBar.Screen 
             name={ROUTES.SearchScreen}

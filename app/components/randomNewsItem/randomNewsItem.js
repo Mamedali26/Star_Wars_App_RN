@@ -4,8 +4,21 @@ import { getRightCategoryForImage, getNumberForImage, getRightImage } from "./lo
 import { styles } from './styles';
 import { imgLink } from "../../services/restApi";
 import { ROUTES } from "../../services/routes";
+import { useDispatch } from "react-redux";
+import { setRandomNewsChosenImage, setRandomNewsChosenItem } from "../../views/homeScreen/redux/action";
 
-const RandomNewsItem = ({ item, navigation }) => {
+const RandomNewsItem = ({ item, navigation, index }) => {
+
+    const dispatch = useDispatch();
+
+    let chosenItemImage = getRightImage(item, item?.url, getNumberForImage, 
+        getRightCategoryForImage, imgLink);
+
+    const chooseItemAndNavigate = () => {
+        dispatch(setRandomNewsChosenImage(chosenItemImage));
+        dispatch(setRandomNewsChosenItem(item));
+        navigation.navigate(ROUTES.RandomNewsItemScreen);
+    }
 
     return (
         <View style={{marginVertical: 5, justifyContent: 'center', alignItems: 'center'}}>
@@ -20,7 +33,7 @@ const RandomNewsItem = ({ item, navigation }) => {
             </Text>
             <TouchableOpacity 
                 style={styles.clickForMoreBtn}
-                onPress={() => navigation.navigate(ROUTES.RandomNewsItemScreen)}
+                onPress={chooseItemAndNavigate}
             >
                 <Text style={styles.clickForMoreBtnText}>Click To See More!</Text>
             </TouchableOpacity>
