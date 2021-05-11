@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const FavourtesScreen = () => {
+const ChosenCategoryScreen = () => {
     return(
         <View style={{backgroundColor: 'skyblue'}}>
             <Text style={{fontSize: 42}}>SOME OTHER TEXT HERE.....</Text>
@@ -9,4 +9,4 @@ const FavourtesScreen = () => {
     );
 }
 
-export default FavourtesScreen;
+export default ChosenCategoryScreen;

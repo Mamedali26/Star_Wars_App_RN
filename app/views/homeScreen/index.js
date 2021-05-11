@@ -4,6 +4,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import HeaderText from "../../components/header";
 import RandomNewsItem from "../../components/randomNewsItem/randomNewsItem";
 import { setHomeScreenSaga } from "./saga/action";
+import { setCategoriesScreenSaga } from "../searchScreen/saga/action";
 
 const HomeScreen = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const HomeScreen = ({ navigation }) => {
 
     useEffect(() => {
         dispatch(setHomeScreenSaga());
+        dispatch(setCategoriesScreenSaga());
     }, []);
     return(
         <View style={{flex: 1}}>

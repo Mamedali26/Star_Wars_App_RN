@@ -1,9 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import FavourtesScreen from '../../../views/favouritesScreen.js';
+import FavouritesScreen from '../../../views/favouritesScreen';
 import SearchScreen from '../../../views/searchScreen/index.js';
 import HomeSVG from "../../../assets/svg/homeSVG";
-import SearchSVG from "../../../assets/svg/seachSVG";
+import SearchSVG from "../../../assets/svg/searchSVG";
 import FavouritesSVG from "../../../assets/svg/favouritesSVG";
 import { ROUTES } from "../../../services/routes";
 import HomeScreen from '../../../views/homeScreen/index.js';
@@ -33,15 +33,15 @@ const BottomTabNavigator = ({ navigation }) => (
                 tabBarIcon: ({focused}) => <SearchSVG color={focused ? 'black' : 'gray'} />
             }}
         >
-            {() => <SearchScreen />}
+            {() => <SearchScreen navigation={navigation} />}
         </BottomTabBar.Screen>
         <BottomTabBar.Screen 
-            name={ROUTES.FavourtesScreen}
+            name={ROUTES.FavouritesScreen}
             options={{
                 tabBarIcon: ({focused}) => <FavouritesSVG color={focused ? 'black' : 'gray'} />
             }}
         >
-            {() => <FavourtesScreen />}
+            {() => <FavouritesScreen />}
         </BottomTabBar.Screen>
     </BottomTabBar.Navigator>
 );

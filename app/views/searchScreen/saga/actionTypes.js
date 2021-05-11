@@ -1,0 +1,3 @@
+export const constants = {
+    SET_CATEGORIES_SCREEN_SAGA: 'SET_CATEGORIES_SCREEN_SAGA',
+}

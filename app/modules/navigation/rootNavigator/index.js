@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreenStack } from '../stackNavigation/randomNewsItemStack';
+import { RootStack } from '../stackNavigation/RootStack';
 
 const RootNavigator = () => (
     <NavigationContainer>
-        <HomeScreenStack />
+        <RootStack />
     </NavigationContainer>
 );
 

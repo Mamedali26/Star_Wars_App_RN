@@ -2,19 +2,20 @@ import React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import { ROUTES } from "../../../../services/routes";
 import RandomNewsItemScreen from "../../../../views/randomNewsItemScreen";
-import BottomTabNavigator from "../../../navigation/bottomTabBar";
+import BottomTabNavigator from "../../bottomTabBar";
+import ChosenCategoryScreen from "../../../../views/chosenCategoryScreen";
 
-const RandomNewsItemNav = createStackNavigator();
+const RootStackNav = createStackNavigator();
 
-export const HomeScreenStack = () => {
+export const RootStack = () => {
     return(
-      <RandomNewsItemNav.Navigator>
-        <RandomNewsItemNav.Screen 
+      <RootStackNav.Navigator>
+        <RootStackNav.Screen 
           name={ROUTES.HomeScreen} 
           component={BottomTabNavigator}
           options={{headerShown: false}}
         /> 
-        <RandomNewsItemNav.Screen 
+        <RootStackNav.Screen 
           name={ROUTES.RandomNewsItemScreen} 
           component={RandomNewsItemScreen}
           options={{
@@ -24,6 +25,10 @@ export const HomeScreenStack = () => {
             },
           }}
         />
-      </RandomNewsItemNav.Navigator>
+        <RootStackNav.Screen
+          name={ROUTES.ChosenCategoryScreen}
+          component={ChosenCategoryScreen}
+        />
+      </RootStackNav.Navigator>
     );
   }
