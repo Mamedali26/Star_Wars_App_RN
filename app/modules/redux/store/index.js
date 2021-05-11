@@ -10,6 +10,9 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
+    blacklist: [
+        'reducerHomeScreen',
+    ]
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import HeaderText from "../../components/header";
-import RandomNewsItem from "../../components/randomNewsItem";
+import RandomNewsItem from "../../components/randomNewsItem/randomNewsItem";
 import { setHomeScreenSaga } from "./saga/action";
 
 const HomeScreen = () => {
@@ -17,12 +17,11 @@ const HomeScreen = () => {
             <HeaderText />
             <ScrollView style={{paddingVertical: 10, backgroundColor: 'orange'}}>
                 {randomNewsItems.map((item, index) => {
-                    console.log('url', item?.url);
                     return <RandomNewsItem 
                         key={index}
                         item={item}
                     />
-})}
+                })}
             </ScrollView>
         </View>
     );

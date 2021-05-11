@@ -8,6 +8,8 @@ export const constantsForUrl = {
     species: 'species',
 }
 
+export const imgLink = 'https://starwars-visualguide.com/assets/img/';
+
 export const sendRequest = async(urlFirstPart, urlSecondPart = '', urlThirdPart = '') => {
     try {
         const response = await fetch(urlFirstPart + urlSecondPart + urlThirdPart);
@@ -17,7 +19,6 @@ export const sendRequest = async(urlFirstPart, urlSecondPart = '', urlThirdPart 
         } else {
             result = await response.json();
         }
-        console.log(result);
         return result;
     } catch (e) {
         console.log('sendRequest error ', e);
