@@ -1,13 +1,15 @@
 import React from "react";
-import { View, Text, TextInput, TouchableOpacity, Image, ScrollView } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ROUTES } from "../../services/routes";
 import { imgLink } from "../../services/restApi";
 import { setChosenCategoryName } from "./redux/action";
+import { getCategoriesInfo } from "../../modules/saga/selectors";
+import { styles } from "./styles";
 
 const SearchScreen = ({ navigation }) => {
 
-    const categoriesInfo = useSelector(state => state.reducerForSearchCategories.categoriesInfo);
+    const categoriesInfo = useSelector(getCategoriesInfo, shallowEqual);
     const dispatch = useDispatch();
 
     const getCategoryImages = item => {
@@ -24,22 +26,22 @@ const SearchScreen = ({ navigation }) => {
     }
 
     return(
-        <View style={{backgroundColor: 'skyblue', flex: 1}}>
-            <View style={{marginHorizontal: 15}}>
-                <ScrollView contentContainerStyle={{paddingVertical: 20}}>
+        <View style={styles.container}>
+            <View style={styles.subContainer}>
+                <ScrollView contentContainerStyle={styles.scrollWrapper}>
                     {categoriesInfo?.map((item, index) => {
                         return (
-                            <View key={index}>   
+                            <View key={index} style={{marginBottom: 10}}>   
                                 <Image  
                                         source={{uri: imgLink + 'categories/' + 
                                             getCategoryImages(item[0]) + '.jpg'}}
-                                        style={{width: '100%', height: 200}}
+                                        style={styles.categoryImage}
                                         resizeMode='contain'
                                 />                             
                                 <TouchableOpacity 
                                     onPress={() => setCategoryAndNavigate(item[0])}
                                 >
-                                        <Text style={{textAlign: 'center', fontSize: 27, fontStyle: 'italic'}}>
+                                        <Text style={styles.clickToChooseCategoryText}>
                                             {item[0].toUpperCase()}
                                         </Text>
                                 </TouchableOpacity>                                

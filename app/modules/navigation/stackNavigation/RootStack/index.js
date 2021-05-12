@@ -1,16 +1,19 @@
 import React from "react";
-import {createStackNavigator} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { ROUTES } from "../../../../services/routes";
-import RandomNewsItemScreen from "../../../../views/randomNewsItemScreen";
+import ItemScreen from "../../../../views/itemScreen";
 import BottomTabNavigator from "../../bottomTabBar";
 import ChosenCategoryScreen from "../../../../views/chosenCategoryScreen";
-import { useSelector } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
+import { getChosenCategory, getChosenItem } from "../../../saga/selectors";
+import { config } from "../../../../services/config";
 
 const RootStackNav = createStackNavigator();
 
 export const RootStack = () => {
 
-    let chosenCategory = useSelector(state => state.reducerForSearchCategories.chosenCategoryName);
+    let chosenCategory = useSelector(getChosenCategory, shallowEqual);
+    const chosenItem = useSelector(getChosenItem, shallowEqual);
 
     return(
       <RootStackNav.Navigator>
@@ -20,20 +23,26 @@ export const RootStack = () => {
           options={{headerShown: false}}
         /> 
         <RootStackNav.Screen 
-          name={ROUTES.RandomNewsItemScreen} 
-          component={RandomNewsItemScreen}
+          name={ROUTES.ItemScreen} 
+          component={ItemScreen}
           options={{
             headerTitle: false, 
             headerStyle: {
-              backgroundColor: 'white',
+              backgroundColor: config.mainAppColor,
             },
+            headerTintColor: config.COLOR_WHITE,
+            headerTitle: chosenItem?.name ? chosenItem?.name : chosenItem?.title,
           }}
         />
         <RootStackNav.Screen
           name={ROUTES.ChosenCategoryScreen}
           component={ChosenCategoryScreen}
           options={{
-            headerTitle: chosenCategory[0].toUpperCase() + chosenCategory.substring(1),
+            headerStyle: {
+              backgroundColor: config.mainAppColor,
+            },
+            hoheaderTintColor: config.COLOR_WHITE,
+            headerTitle: chosenCategory ? chosenCategory?.[0].toUpperCase() + chosenCategory?.substring(1) : '',
           }}
         />
       </RootStackNav.Navigator>

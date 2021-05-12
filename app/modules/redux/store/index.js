@@ -12,6 +12,7 @@ const persistConfig = {
     storage: AsyncStorage,
     blacklist: [
         'reducerHomeScreen',
+        'reducerForSearchCategories',
     ]
 };
 

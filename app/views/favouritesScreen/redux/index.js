@@ -20,11 +20,11 @@ export const reducerFavouritesScreen = (state = initialState, action) => {
         //         ...state,
         //         isFavourite: action.data
         //     }
-        // case constants.SET_FAVOURITES_EMPTY:
-        //     return {
-        //         ...state,
-        //         favourites: []
-        //     }
+        case constants.SET_FAVOURITES_EMPTY:
+            return {
+                ...state,
+                favourites: initialState.favourites
+            }
     }
     return state;
 }

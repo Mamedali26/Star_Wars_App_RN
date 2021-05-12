@@ -1,7 +1,7 @@
 import { call, takeEvery, put, select, all } from "@redux-saga/core/effects";
 import { sendRequest, urlFirstPart, constantsForUrl } from "../../../services/restApi";
 import { constants } from "./actionTypes";
-import { setRandomNewsItems } from "../redux/action";
+import { setIsLoading, setRandomNewsItems } from "../redux/action";
 
 export const getRandomNewsItem = (array) => {
     let number = Math.floor(Math.random() * array.length);
@@ -10,6 +10,7 @@ export const getRandomNewsItem = (array) => {
 
 export function* workerRandomNewsHomeScreen() {
     try {
+        yield put(setIsLoading(true));
         const { people, films, planets, vehicles, species, starships } = yield all({
             people: call(sendRequest, urlFirstPart, constantsForUrl.people),
             films: call(sendRequest, urlFirstPart, constantsForUrl.films),
@@ -29,7 +30,13 @@ export function* workerRandomNewsHomeScreen() {
         });
         const randomNewsItems = [randomPeopleItem, randomFilmItem, randomPlanetItem,
             randomVehicleItem, randomSpeciesItem, randomStarshipItem];
+
+        for (let el of randomNewsItems) {
+            el.isFavourite = false;
+        }
+
         yield put(setRandomNewsItems(randomNewsItems));
+        yield put(setIsLoading(false));
     } catch (e) {
         console.log('workerRandomNewsHomeScreen error ', e);
     }

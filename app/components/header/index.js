@@ -1,17 +1,15 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { styles } from "./styles";
 
 const HeaderText = () => {
     return(
-        <View style={{alignItems: 'center', 
-        justifyContent: 'center', paddingVertical: 10, backgroundColor: 'skyblue'}}>
-            <Text style={{fontSize: 42, fontWeight: 'bold', 
-            color: 'darkred'}}>
+        <View style={styles.headerView}>
+            <Text style={styles.headerText}>
                 STAR WARS
             </Text>
-            <Text style={{fontSize: 27, 
-                fontStyle: 'italic'}}>
-                    The Galaxy far-far away...
+            <Text style={styles.subHeaderText}>
+                The Galaxy far-far away...
             </Text>
         </View>
     );

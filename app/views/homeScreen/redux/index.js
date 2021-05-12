@@ -4,6 +4,7 @@ const initialState = {
     randomNewsItems: [],
     chosenItem: {},
     chosenItemImage: '',
+    isLoading: false,
 }
 
 export const reducerHomeScreen = (state = initialState, action) => {
@@ -22,6 +23,11 @@ export const reducerHomeScreen = (state = initialState, action) => {
             return {
                 ...state,
                 chosenItemImage: action.data
+            }
+        case constants.SET_IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.data
             }
     }
     return state;

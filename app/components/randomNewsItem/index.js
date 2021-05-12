@@ -4,16 +4,19 @@ import { getRightCategoryForImage, getNumberForImage, getRightImage } from "./lo
 import { styles } from './styles';
 import { imgLink } from "../../services/restApi";
 import { ROUTES } from "../../services/routes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { setRandomNewsChosenImage, setRandomNewsChosenItem } from "../../views/homeScreen/redux/action";
 import FavouritesSVG from "../../assets/svg/favouritesSVG";
 import { setItemToFavourites } from "../../views/favouritesScreen/redux/action";
+import { config } from "../../services/config";
 
-const RandomNewsItem = ({ item, navigation, index }) => {
+const StarWarsItem = ({ item, navigation }) => {
 
     const dispatch = useDispatch();
 
     const [isR, setR] = useState(false);
+
+    const favourites = useSelector(state => state.reducerFavouritesScreen.favourites, shallowEqual);
 
     const setR2 = () => {
         setR(!isR);
@@ -26,11 +29,11 @@ const RandomNewsItem = ({ item, navigation, index }) => {
     const chooseItemAndNavigate = () => {
         dispatch(setRandomNewsChosenImage(chosenItemImage));
         dispatch(setRandomNewsChosenItem(item));
-        navigation.navigate(ROUTES.RandomNewsItemScreen);
+        navigation.navigate(ROUTES.ItemScreen);
     }
 
     return (
-        <View style={{marginVertical: 5, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={styles.itemContainer}>
             <Image 
                 source={{uri: getRightImage(item, item?.url, getNumberForImage, 
                     getRightCategoryForImage, imgLink)}}
@@ -40,12 +43,16 @@ const RandomNewsItem = ({ item, navigation, index }) => {
             <Text style={styles.itemName}>
                 {item?.name ? item?.name : item?.title}
             </Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={styles.btnWrapper}>
                 <TouchableOpacity 
-                    style={{backgroundColor: 'white', borderWidth: 2, marginBottom: 4, padding: 10}}
+                    style={styles.addToFavBtn}
                     onPress={setR2}
                 >
-                    <FavouritesSVG color={isR ? 'red' : 'gray'} />
+                    <FavouritesSVG 
+                        color={isR ? config.COLOR_RED : config.COLOR_GRAY} 
+                        width={24} 
+                        height={24} 
+                    />
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={styles.clickForMoreBtn}
@@ -58,4 +65,4 @@ const RandomNewsItem = ({ item, navigation, index }) => {
     );
 }
 
-export default RandomNewsItem;
+export default StarWarsItem;

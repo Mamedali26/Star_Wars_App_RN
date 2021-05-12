@@ -3,7 +3,7 @@ import Svg, { Defs, Path } from "react-native-svg"
 
 function SearchSVG({ color }) {
   return (
-    <Svg id="Layer_1" data-name="Layer 1" viewBox="0 0 128 128" fill={color} width={40} height={40}>
+    <Svg id="Layer_1" data-name="Layer 1" viewBox="0 0 128 128" fill={color} width={36} height={36}>
       <Defs></Defs>
       <Path
         className="cls-1"

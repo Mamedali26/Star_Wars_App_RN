@@ -7,22 +7,24 @@ import SearchSVG from "../../../assets/svg/searchSVG";
 import FavouritesSVG from "../../../assets/svg/favouritesSVG";
 import { ROUTES } from "../../../services/routes";
 import HomeScreen from '../../../views/homeScreen/index.js';
+import { config } from '../../../services/config';
 
 const BottomTabBar = createBottomTabNavigator();
 
 const BottomTabNavigator = ({ navigation }) => (
     <BottomTabBar.Navigator
         tabBarOptions={{
-            style: {backgroundColor: 'pink', height: 60},
+            style: {height: 60, borderTopColor: config.mainAppColor},
             showLabel: false,
-            activeBackgroundColor: 'yellow',
-            inactiveBackgroundColor: 'white'
+            activeBackgroundColor: config.COLOR_WHITE,
+            inactiveBackgroundColor: config.mainAppColor,
         }}
     >
         <BottomTabBar.Screen 
             name={ROUTES.HomeScreen}
             options={{
-                tabBarIcon: ({focused}) => <HomeSVG color={focused ? 'black' : 'gray'} />
+                tabBarIcon: ({focused}) => 
+                    <HomeSVG color={focused ? config.mainAppColor : config.COLOR_GRAY} />
             }}
         >
             {() => <HomeScreen navigation={navigation} />}
@@ -30,7 +32,8 @@ const BottomTabNavigator = ({ navigation }) => (
         <BottomTabBar.Screen 
             name={ROUTES.SearchScreen}
             options={{
-                tabBarIcon: ({focused}) => <SearchSVG color={focused ? 'black' : 'gray'} />
+                tabBarIcon: ({focused}) => 
+                    <SearchSVG color={focused ? config.mainAppColor : config.COLOR_GRAY} />
             }}
         >
             {() => <SearchScreen navigation={navigation} />}
@@ -38,10 +41,15 @@ const BottomTabNavigator = ({ navigation }) => (
         <BottomTabBar.Screen 
             name={ROUTES.FavouritesScreen}
             options={{
-                tabBarIcon: ({focused}) => <FavouritesSVG color={focused ? 'black' : 'gray'} />
+                tabBarIcon: ({focused}) => 
+                    <FavouritesSVG 
+                        color={focused ? config.mainAppColor : config.COLOR_GRAY} 
+                        width={36}
+                        height={36}
+                    />
             }}
         >
-            {() => <FavouritesScreen />}
+            {() => <FavouritesScreen navigation={navigation} />}
         </BottomTabBar.Screen>
     </BottomTabBar.Navigator>
 );

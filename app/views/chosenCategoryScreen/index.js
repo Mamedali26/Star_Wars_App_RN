@@ -2,30 +2,35 @@ import React, { useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { setChosenCategoryItemsSaga } from "../searchScreen/saga/action";
+import RandomNewsItem from "../../components/randomNewsItem";
+import { getChosenCategoryItemsInfo } from "../../modules/saga/selectors";
+import { config } from "../../services/config";
 
-const ChosenCategoryScreen = () => {
+const ChosenCategoryScreen = ({ navigation }) => {
     const dispatch = useDispatch();
-    const chosenCategoryItemsInfo = useSelector(state => state.reducerForSearchCategories.chosenCategoryItems, shallowEqual);
+    const chosenCategoryItemsInfo = useSelector(getChosenCategoryItemsInfo, shallowEqual);
     const chosenCategoryItems = chosenCategoryItemsInfo?.results;
 
     useEffect(() => {
-        console.log(chosenCategoryItems);
         dispatch(setChosenCategoryItemsSaga());
     }, []);
 
     const renderItems = ({ item }) => (
-        <Text>{item?.name ? item?.name : item?.title}</Text>
+        <RandomNewsItem 
+            navigation={navigation}
+            item={item}
+        />
     );
 
     return(
-        <View style={{flex: 1, backgroundColor: 'yellow'}}>
-            <View style={{backgroundColor: 'skyblue', flexDirection: 'row'}}>
+        <View style={{flex: 1, backgroundColor: config.mainAppColor}}>
+            <View style={{flexDirection: 'row'}}>
                 <TextInput 
                     placeholder='Search inside of Star Wars Universe...'
-                    placeholderTextColor='white'
+                    placeholderTextColor='red'
                     style={{
                         borderWidth: 2,
-                        backgroundColor: 'red',
+                        backgroundColor: 'white',
                         width: '80%',
                         padding: 10,
                         fontSize: 16,

@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
-import { View, Text } from "react-native";
-import { useSelector } from "react-redux";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import RandomNewsItem from "../../components/randomNewsItem";
+import { setFavouritesEmpty } from "./redux/action";
 
-const FavouritesScreen = () => {
+const FavouritesScreen = ({ navigation }) => {
+
+    const dispatch = useDispatch();
 
     //const isFavourite = useSelector();
     const favourites = useSelector(state => state.reducerFavouritesScreen.favourites);
@@ -11,9 +15,28 @@ const FavouritesScreen = () => {
         console.log(favourites);
     });
 
+    const renderItems = ({ item }) => (
+        <RandomNewsItem 
+            navigation={navigation}
+            item={item}
+        />
+    );
+
+    const clearFavourites = () => {
+        dispatch(setFavouritesEmpty());
+    }
+
     return(
         <View style={{backgroundColor: 'skyblue'}}>
-            <Text style={{fontSize: 42}}>SOME OTHER TEXT HERE.....</Text>
+            <Text style={{fontSize: 42}}>Favourites...</Text>
+            <TouchableOpacity onPress={clearFavourites}>
+                <Text>CLEAR ALL!</Text>
+            </TouchableOpacity>
+            <FlatList
+                data={favourites}
+                renderItem={renderItems}
+                keyExtractor={item => item?.name ? item?.name : item?.title}
+            />
         </View>
     );
 }

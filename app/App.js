@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text, StatusBar } from "react-native";
+import { StatusBar, KeyboardAvoidingView, Platform } from "react-native";
 import RootNavigator from "./modules/navigation/rootNavigator";
+import { config } from "./services/config";
 
 const App = () => (
-  <>
-    <StatusBar backgroundColor='skyblue'/>
+  <KeyboardAvoidingView style={{flex: 1}} 
+    behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+  >
+    <StatusBar 
+      backgroundColor={config.mainAppColor}
+      barStyle="light-content"      
+    />
     <RootNavigator />
-  </>
+  </KeyboardAvoidingView>
 );
 
 export default App;
