@@ -1,7 +1,7 @@
-import { call, takeEvery, put, select, all } from "@redux-saga/core/effects";
-import { sendRequest, urlFirstPart, constantsForUrl } from "../../../services/restApi";
+import { call, takeEvery, put, select } from "@redux-saga/core/effects";
+import { sendRequest, urlFirstPart } from "../../../services/restApi";
 import { constants } from "./actionTypes";
-import { setCategoriesInfo } from "../redux/action";
+import { setCategoriesInfo, setChosenCategoryItems } from "../redux/action";
 
 export function* workerCategoriesSearchScreen() {
     try {
@@ -15,4 +15,18 @@ export function* workerCategoriesSearchScreen() {
 
 export function* watcherCategoriesSearchScreen() {
     yield takeEvery(constants.SET_CATEGORIES_SCREEN_SAGA, workerCategoriesSearchScreen);
+}
+
+export function* workerChosenCategoryItems() {
+    try {
+        const chosenCategoryName = yield select(state => state.reducerForSearchCategories.chosenCategoryName);
+        const chosenCategoryItems = yield call(sendRequest, urlFirstPart, chosenCategoryName);
+        yield put(setChosenCategoryItems(chosenCategoryItems));
+    } catch (e) {
+        console.log('workerChosenCategoryItems error ', e);
+    }
+}
+
+export function* watcherChosenCategoryItems() {
+    yield takeEvery(constants.SET_CHOSEN_CATEGORY_ITEMS_SAGA, workerChosenCategoryItems);
 }

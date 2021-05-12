@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, BackHandler } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import HeaderText from "../../components/header";
 import RandomNewsItem from "../../components/randomNewsItem/randomNewsItem";
 import { setHomeScreenSaga } from "./saga/action";
 import { setCategoriesScreenSaga } from "../searchScreen/saga/action";
 
+
 const HomeScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const randomNewsItems = useSelector(state => state.reducerHomeScreen.randomNewsItems, shallowEqual);
+
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', () => true)
+        return () =>
+          BackHandler.removeEventListener('hardwareBackPress', () => true)
+      }, [])
 
     useEffect(() => {
         dispatch(setHomeScreenSaga());
