@@ -7,3 +7,7 @@ export const setCategoriesScreenSaga = () => ({
 export const setChosenCategoryItemsSaga = () => ({
     type: constants.SET_CHOSEN_CATEGORY_ITEMS_SAGA,
 });
+
+export const setSearchItemsSaga = () => ({
+    type: constants.SET_SEARCH_ITEMS_SAGA,
+});

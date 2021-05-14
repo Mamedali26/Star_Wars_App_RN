@@ -1,5 +1,5 @@
 import { call, takeEvery, put, select } from "@redux-saga/core/effects";
-import { sendRequest, urlFirstPart } from "../../../services/restApi";
+import { sendRequest, urlFirstPart, constantForSearch } from "../../../services/restApi";
 import { constants } from "./actionTypes";
 import { setCategoriesInfo, setChosenCategoryItems } from "../redux/action";
 
@@ -29,4 +29,16 @@ export function* workerChosenCategoryItems() {
 
 export function* watcherChosenCategoryItems() {
     yield takeEvery(constants.SET_CHOSEN_CATEGORY_ITEMS_SAGA, workerChosenCategoryItems);
+}
+
+export function* workerSearchItems() {
+    const searchText = yield select(state => state.reducerForSearchCategories.searchText);
+    const chosenCategoryName = yield select(state => state.reducerForSearchCategories.chosenCategoryName);
+    console.log('searchText', searchText);
+    const t = yield call(sendRequest, urlFirstPart, chosenCategoryName, constantForSearch + searchText);
+    console.log('TTTTT', t);
+}
+
+export function* watherSearchItems() {
+    yield takeEvery(constants.SET_SEARCH_ITEMS_SAGA, workerSearchItems);
 }

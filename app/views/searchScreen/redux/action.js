@@ -14,3 +14,13 @@ export const setChosenCategoryItems = data => ({
     type: constants.SET_CHOSEN_CATEGORY_ITEMS,
     data,
 });
+
+export const setIsSearch = data => ({
+    type: constants.SET_IS_SEARCH,
+    data,
+});
+
+export const setSearchText = data => ({
+    type: constants.SET_SEARCH_TEXT,
+    data,
+});

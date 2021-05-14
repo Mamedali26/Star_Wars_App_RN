@@ -4,6 +4,8 @@ const initialState = {
     categoriesInfo: [],
     chosenCategoryName: '',
     chosenCategoryItems: {},
+    isSearch: false,
+    searchText: '',
 }
 
 export const reducerForSearchCategories = (state = initialState, action) => {
@@ -22,6 +24,16 @@ export const reducerForSearchCategories = (state = initialState, action) => {
             return {
                 ...state,
                 chosenCategoryItems: action.data
+            }
+        case constants.SET_IS_SEARCH:
+            return {
+                ...state, 
+                isSearch: action.data
+            }
+        case constants.SET_SEARCH_TEXT:
+            return {
+                ...state, 
+                searchText: action.data
             }
     }
     return state;

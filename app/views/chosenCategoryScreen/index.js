@@ -1,16 +1,21 @@
-import React, { useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { View, Text, TextInput, TouchableOpacity, FlatList, Keyboard } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { setChosenCategoryItemsSaga } from "../searchScreen/saga/action";
+import { setChosenCategoryItemsSaga, setSearchItemsSaga } from "../searchScreen/saga/action";
 import RandomNewsItem from "../../components/randomNewsItem";
 import { getChosenCategoryItemsInfo } from "../../modules/saga/selectors";
 import { config } from "../../services/config";
 import { styles } from "./styles";
+import { setIsSearch, setSearchText } from "../searchScreen/redux/action";
 
 const ChosenCategoryScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const chosenCategoryItemsInfo = useSelector(getChosenCategoryItemsInfo, shallowEqual);
     const chosenCategoryItems = chosenCategoryItemsInfo?.results;
+
+    const textInput = useRef();
+
+    let searchText = '';
 
     useEffect(() => {
         dispatch(setChosenCategoryItemsSaga());
@@ -23,6 +28,14 @@ const ChosenCategoryScreen = ({ navigation }) => {
         />
     );
 
+    const makeSearch = () => {
+        dispatch(setIsSearch(true));
+        dispatch(setSearchText(searchText));
+        dispatch(setSearchItemsSaga());
+        Keyboard.dismiss();
+        textInput.current.clear();
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.searchBar}>
@@ -32,8 +45,13 @@ const ChosenCategoryScreen = ({ navigation }) => {
                     style={styles.searchInput}
                     numberOfLines={1}
                     maxLength={40}
+                    onChangeText={text => searchText = text}
+                    ref={text => textInput.current = text}
                 />
-                <TouchableOpacity style={styles.searchBtn}>
+                <TouchableOpacity 
+                    style={styles.searchBtn}
+                    onPress={makeSearch}
+                >
                     <Text style={styles.searchBtnText}>GO!</Text>
                 </TouchableOpacity>
             </View>

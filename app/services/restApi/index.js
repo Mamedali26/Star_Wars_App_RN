@@ -5,8 +5,10 @@ export const constantsForUrl = {
     films: 'films/',
     vehicles: 'vehicles/',
     starships: 'starships/',
-    species: 'species',
+    species: 'species/',
 }
+
+export const constantForSearch = "?search=";
 
 export const imgLink = 'https://starwars-visualguide.com/assets/img/';
 
