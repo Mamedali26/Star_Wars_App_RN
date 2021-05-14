@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import RandomNewsItem from "../../components/randomNewsItem";
+import { getFavourites } from "../../modules/saga/selectors";
 import { setFavouritesEmpty } from "./redux/action";
 
 const FavouritesScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
-
-    //const isFavourite = useSelector();
-    const favourites = useSelector(state => state.reducerFavouritesScreen.favourites);
+    const favourites = useSelector(getFavourites, shallowEqual);
 
     useEffect(() => {
         console.log(favourites);

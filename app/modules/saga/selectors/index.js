@@ -5,3 +5,4 @@ export const getChosenCategoryItemsInfo = state => state.reducerForSearchCategor
 export const getCategoriesInfo = state => state.reducerForSearchCategories.categoriesInfo;
 export const getRandomNewsItems = state => state.reducerHomeScreen.randomNewsItems;
 export const getIsLoading = state => state.reducerHomeScreen.isLoading;
+export const getFavourites = state => state.reducerFavouritesScreen.favourites;

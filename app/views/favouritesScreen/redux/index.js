@@ -2,7 +2,6 @@ import { constants } from "./actionTypes";
 
 const initialState = {
     favourites: [],
-    isFavourite: false,
 }
 
 export const reducerFavouritesScreen = (state = initialState, action) => {
@@ -15,11 +14,11 @@ export const reducerFavouritesScreen = (state = initialState, action) => {
                     action.data
                 ]
             }
-        // case constants.SET_IS_FAVOURITE:
-        //     return {
-        //         ...state,
-        //         isFavourite: action.data
-        //     }
+        case constants.SET_ITEM_REMOVE_FROM_FAVOURITES:
+            return {
+                ...state,
+                favourites: action.data
+            }
         case constants.SET_FAVOURITES_EMPTY:
             return {
                 ...state,

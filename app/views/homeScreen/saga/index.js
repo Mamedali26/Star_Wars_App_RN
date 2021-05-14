@@ -31,10 +31,6 @@ export function* workerRandomNewsHomeScreen() {
         const randomNewsItems = [randomPeopleItem, randomFilmItem, randomPlanetItem,
             randomVehicleItem, randomSpeciesItem, randomStarshipItem];
 
-        for (let el of randomNewsItems) {
-            el.isFavourite = false;
-        }
-
         yield put(setRandomNewsItems(randomNewsItems));
         yield put(setIsLoading(false));
     } catch (e) {

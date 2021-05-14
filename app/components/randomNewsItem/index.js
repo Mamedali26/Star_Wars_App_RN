@@ -7,20 +7,26 @@ import { ROUTES } from "../../services/routes";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { setRandomNewsChosenImage, setRandomNewsChosenItem } from "../../views/homeScreen/redux/action";
 import FavouritesSVG from "../../assets/svg/favouritesSVG";
-import { setItemToFavourites } from "../../views/favouritesScreen/redux/action";
+import { setItemToFavourites, setItemRemoveFromFavourites } from "../../views/favouritesScreen/redux/action";
 import { config } from "../../services/config";
+import { getFavourites } from "../../modules/saga/selectors";
 
 const StarWarsItem = ({ item, navigation }) => {
 
     const dispatch = useDispatch();
 
-    const [isR, setR] = useState(false);
+    const favourites = useSelector(getFavourites, shallowEqual);
 
-    const favourites = useSelector(state => state.reducerFavouritesScreen.favourites, shallowEqual);
+    const addToFavourites = () => {
+        const checkForFav = favourites?.filter(element => element?.name === item?.name);
+        if (checkForFav?.length === 0) {            
+            dispatch(setItemToFavourites(item));
+        }
+    }
 
-    const setR2 = () => {
-        setR(!isR);
-        dispatch(setItemToFavourites(item));
+    const removeFromFavourites = () => {
+        const newFavsWithoutRemovedItem = favourites?.filter(element => element?.name !== item?.name);
+        dispatch(setItemRemoveFromFavourites(newFavsWithoutRemovedItem))
     }
 
     let chosenItemImage = getRightImage(item, item?.url, getNumberForImage, 
@@ -46,10 +52,20 @@ const StarWarsItem = ({ item, navigation }) => {
             <View style={styles.btnWrapper}>
                 <TouchableOpacity 
                     style={styles.addToFavBtn}
-                    onPress={setR2}
+                    onPress={addToFavourites}
                 >
                     <FavouritesSVG 
-                        color={isR ? config.COLOR_RED : config.COLOR_GRAY} 
+                        color={config.mainAppColor} 
+                        width={24} 
+                        height={24} 
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity 
+                    style={styles.addToFavBtn}
+                    onPress={removeFromFavourites}
+                >
+                    <FavouritesSVG 
+                        color={config.COLOR_BLACK} 
                         width={24} 
                         height={24} 
                     />
