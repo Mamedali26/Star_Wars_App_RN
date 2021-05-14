@@ -27,7 +27,10 @@ const HomeScreen = ({ navigation }) => {
 
     return(
         <View style={styles.container}>
-            <HeaderText />
+            <HeaderText 
+                headerTitle='STAR WARS'
+                subHeader="The Galaxy far-far away..."
+            />
             <ScrollView>
                 {isLoading ? <ActivityIndicator color={config.COLOR_GOLD} size={40} /> :
                 randomNewsItems.map((item, index) => {

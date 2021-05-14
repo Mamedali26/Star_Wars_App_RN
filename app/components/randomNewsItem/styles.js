@@ -39,17 +39,4 @@ export const styles = StyleSheet.create({
         marginRight: 5, 
         padding: 6,
     },
-    clickForMoreBtn: {
-        width: '60%',
-        marginBottom: 10,
-        justifyContent: 'center',
-    },
-    clickForMoreBtnText: {
-        color: config.mainAppColor, 
-        fontWeight: 'bold', 
-        fontSize: 20,
-        textAlign:'center', 
-        letterSpacing: 3,
-        marginTop: 4,
-    },
 });

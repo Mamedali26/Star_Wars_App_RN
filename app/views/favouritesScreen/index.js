@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import HeaderText from "../../components/header";
+import MainBtn from "../../components/mainBtn";
 import RandomNewsItem from "../../components/randomNewsItem";
 import { getFavourites } from "../../modules/saga/selectors";
+import { config } from "../../services/config";
 import { setFavouritesEmpty } from "./redux/action";
 
 const FavouritesScreen = ({ navigation }) => {
 
     const dispatch = useDispatch();
     const favourites = useSelector(getFavourites, shallowEqual);
-
-    useEffect(() => {
-        console.log(favourites);
-    });
 
     const renderItems = ({ item }) => (
         <RandomNewsItem 
@@ -26,11 +25,15 @@ const FavouritesScreen = ({ navigation }) => {
     }
 
     return(
-        <View style={{backgroundColor: 'skyblue'}}>
-            <Text style={{fontSize: 42}}>Favourites...</Text>
-            <TouchableOpacity onPress={clearFavourites}>
-                <Text>CLEAR ALL!</Text>
-            </TouchableOpacity>
+        <View style={{backgroundColor: config.mainAppColor, flex: 1}}>
+            <HeaderText headerTitle='Favourites' />
+            <View style={{alignItems: 'center'}}>
+                <MainBtn
+                    title="CLEAR ALL!"
+                    fn={clearFavourites}
+                    paddingVertical={4}
+                />
+            </View>
             <FlatList
                 data={favourites}
                 renderItem={renderItems}

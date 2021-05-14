@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import { getRightCategoryForImage, getNumberForImage, getRightImage } from "./logic";
 import { styles } from './styles';
@@ -10,6 +10,8 @@ import FavouritesSVG from "../../assets/svg/favouritesSVG";
 import { setItemToFavourites, setItemRemoveFromFavourites } from "../../views/favouritesScreen/redux/action";
 import { config } from "../../services/config";
 import { getFavourites } from "../../modules/saga/selectors";
+import RemoveFromFavouritesSVG from "../../assets/svg/removeFromFavouritesSVG";
+import MainBtn from "../mainBtn";
 
 const StarWarsItem = ({ item, navigation }) => {
 
@@ -64,18 +66,16 @@ const StarWarsItem = ({ item, navigation }) => {
                     style={styles.addToFavBtn}
                     onPress={removeFromFavourites}
                 >
-                    <FavouritesSVG 
-                        color={config.COLOR_BLACK} 
+                    <RemoveFromFavouritesSVG 
+                        color={config.COLOR_RED} 
                         width={24} 
                         height={24} 
                     />
                 </TouchableOpacity>
-                <TouchableOpacity 
-                    style={styles.clickForMoreBtn}
-                    onPress={chooseItemAndNavigate}
-                >
-                    <Text style={styles.clickForMoreBtnText}>Click To See More!</Text>
-                </TouchableOpacity>
+                <MainBtn 
+                    title="Click To See More!"
+                    fn={chooseItemAndNavigate}
+                />
             </View>
         </View>
     );

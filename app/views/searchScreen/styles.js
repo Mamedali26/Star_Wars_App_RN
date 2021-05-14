@@ -12,6 +12,9 @@ export const styles = StyleSheet.create({
     scrollWrapper: {
         paddingVertical: 20,
     },
+    categoryWrapper: {
+        marginBottom: 10,
+    },
     categoryImage: {
         width: '100%',
         height: 200,

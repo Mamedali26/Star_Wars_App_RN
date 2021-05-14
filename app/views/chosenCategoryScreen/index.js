@@ -5,6 +5,7 @@ import { setChosenCategoryItemsSaga } from "../searchScreen/saga/action";
 import RandomNewsItem from "../../components/randomNewsItem";
 import { getChosenCategoryItemsInfo } from "../../modules/saga/selectors";
 import { config } from "../../services/config";
+import { styles } from "./styles";
 
 const ChosenCategoryScreen = ({ navigation }) => {
     const dispatch = useDispatch();
@@ -23,24 +24,17 @@ const ChosenCategoryScreen = ({ navigation }) => {
     );
 
     return(
-        <View style={{flex: 1, backgroundColor: config.mainAppColor}}>
-            <View style={{flexDirection: 'row'}}>
+        <View style={styles.container}>
+            <View style={styles.searchBar}>
                 <TextInput 
                     placeholder='Search inside of Star Wars Universe...'
-                    placeholderTextColor='red'
-                    style={{
-                        borderWidth: 2,
-                        backgroundColor: 'white',
-                        width: '80%',
-                        padding: 10,
-                        fontSize: 16,
-                        color: 'white',
-                    }}
+                    placeholderTextColor={config.mainAppColor}
+                    style={styles.searchInput}
                     numberOfLines={1}
                     maxLength={40}
                 />
-                <TouchableOpacity style={{borderWidth: 2, backgroundColor: 'white', padding: 10}}>
-                    <Text style={{textAlign: 'center', fontSize: 20}}>GO!</Text>
+                <TouchableOpacity style={styles.searchBtn}>
+                    <Text style={styles.searchBtnText}>GO!</Text>
                 </TouchableOpacity>
             </View>
             <FlatList

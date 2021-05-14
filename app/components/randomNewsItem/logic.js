@@ -35,10 +35,10 @@ export const getRightImage = (item, url, fn, secondFn, imgLink) => {
         }
     }
     else if (!item?.starship_class) {
-        if (item?.orbital_period) {
+        if (item?.orbital_period && fn(url) == 1) {
             result = imgLink + 'placeholder.jpg';
         }
-        else if (!item?.orbital_period) {
+        else {
             result = imgLink + secondFn(item) + 
                 fn(item?.url) + '.jpg';
         }

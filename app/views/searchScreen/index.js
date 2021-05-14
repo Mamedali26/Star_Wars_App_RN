@@ -6,19 +6,12 @@ import { imgLink } from "../../services/restApi";
 import { setChosenCategoryName } from "./redux/action";
 import { getCategoriesInfo } from "../../modules/saga/selectors";
 import { styles } from "./styles";
+import { getCategoryImages } from "./logic";
 
 const SearchScreen = ({ navigation }) => {
 
     const categoriesInfo = useSelector(getCategoriesInfo, shallowEqual);
-    const dispatch = useDispatch();
-
-    const getCategoryImages = item => {
-        let result = item;
-        if (item === 'people') {
-            result = 'character';
-        }
-        return result;
-    }
+    const dispatch = useDispatch();    
 
     const setCategoryAndNavigate = item => {
         dispatch(setChosenCategoryName(item));
@@ -31,7 +24,7 @@ const SearchScreen = ({ navigation }) => {
                 <ScrollView contentContainerStyle={styles.scrollWrapper}>
                     {categoriesInfo?.map((item, index) => {
                         return (
-                            <View key={index} style={{marginBottom: 10}}>   
+                            <View key={index} style={styles.categoryWrapper}>   
                                 <Image  
                                         source={{uri: imgLink + 'categories/' + 
                                             getCategoryImages(item[0]) + '.jpg'}}

@@ -41,7 +41,7 @@ export const RootStack = () => {
             headerStyle: {
               backgroundColor: config.mainAppColor,
             },
-            hoheaderTintColor: config.COLOR_WHITE,
+            headerTintColor: config.COLOR_WHITE,
             headerTitle: chosenCategory ? chosenCategory?.[0].toUpperCase() + chosenCategory?.substring(1) : '',
           }}
         />
