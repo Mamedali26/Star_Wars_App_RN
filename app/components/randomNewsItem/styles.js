@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     },
     itemImage: {
         width: '95%', 
-        height: 350,
+        height: 400,
         borderRadius: 30,
         marginBottom: 10,
     },
