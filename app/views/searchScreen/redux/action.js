@@ -24,3 +24,8 @@ export const setSearchText = data => ({
     type: constants.SET_SEARCH_TEXT,
     data,
 });
+
+export const setSearchResults = data => ({
+    type: constants.SET_SEARCH_RESULTS,
+    data,
+});

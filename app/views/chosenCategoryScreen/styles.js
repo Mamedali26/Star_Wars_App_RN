@@ -29,4 +29,9 @@ export const styles = StyleSheet.create({
         color: config.mainAppColor,
         fontWeight: 'bold',
     },
+    searchResultsFound: {
+        color: config.COLOR_WHITE, 
+        fontSize: 24,
+        marginLeft: 15,
+    },
 });

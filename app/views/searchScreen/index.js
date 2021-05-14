@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ROUTES } from "../../services/routes";
 import { imgLink } from "../../services/restApi";
-import { setChosenCategoryName } from "./redux/action";
+import { setChosenCategoryName, setIsSearch } from "./redux/action";
 import { getCategoriesInfo } from "../../modules/saga/selectors";
 import { styles } from "./styles";
 import { getCategoryImages } from "./logic";
@@ -15,6 +15,7 @@ const SearchScreen = ({ navigation }) => {
 
     const setCategoryAndNavigate = item => {
         dispatch(setChosenCategoryName(item));
+        dispatch(setIsSearch(false));
         navigation.navigate(ROUTES.ChosenCategoryScreen);
     }
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import { View, Text, TextInput, TouchableOpacity, FlatList, Keyboard } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, FlatList, Keyboard, 
+    ActivityIndicator } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { setChosenCategoryItemsSaga, setSearchItemsSaga } from "../searchScreen/saga/action";
 import RandomNewsItem from "../../components/randomNewsItem";
-import { getChosenCategoryItemsInfo } from "../../modules/saga/selectors";
+import { getChosenCategoryItemsInfo, getSearchResults, getIsSearch, getIsLoading } from "../../modules/saga/selectors";
 import { config } from "../../services/config";
 import { styles } from "./styles";
 import { setIsSearch, setSearchText } from "../searchScreen/redux/action";
@@ -12,21 +13,22 @@ const ChosenCategoryScreen = ({ navigation }) => {
     const dispatch = useDispatch();
     const chosenCategoryItemsInfo = useSelector(getChosenCategoryItemsInfo, shallowEqual);
     const chosenCategoryItems = chosenCategoryItemsInfo?.results;
-
+    const searchResults = useSelector(getSearchResults, shallowEqual);
+    const isSearch = useSelector(getIsSearch, shallowEqual);
+    const isLoading = useSelector(getIsLoading, shallowEqual);
     const textInput = useRef();
-
     let searchText = '';
 
     useEffect(() => {
         dispatch(setChosenCategoryItemsSaga());
     }, []);
 
-    const renderItems = ({ item }) => (
-        <RandomNewsItem 
+    const renderItems = ({ item }) => {
+        return <RandomNewsItem 
             navigation={navigation}
             item={item}
         />
-    );
+    };
 
     const makeSearch = () => {
         dispatch(setIsSearch(true));
@@ -55,11 +57,15 @@ const ChosenCategoryScreen = ({ navigation }) => {
                     <Text style={styles.searchBtnText}>GO!</Text>
                 </TouchableOpacity>
             </View>
+            {isSearch && <Text style={styles.searchResultsFound}>
+                Found {searchResults?.count} search results
+            </Text>}
+            {isLoading ? <ActivityIndicator color={config.COLOR_GOLD} size={40} /> :
             <FlatList
-                data={chosenCategoryItems}
+                data={isSearch ? searchResults?.results : chosenCategoryItems}
                 renderItem={renderItems}
                 keyExtractor={item => item?.name ? item?.name : item?.title}
-            />
+            />}
         </View>        
     );
 }

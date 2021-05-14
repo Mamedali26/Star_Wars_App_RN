@@ -1,7 +1,9 @@
 import { call, takeEvery, put, select } from "@redux-saga/core/effects";
 import { sendRequest, urlFirstPart, constantForSearch } from "../../../services/restApi";
 import { constants } from "./actionTypes";
-import { setCategoriesInfo, setChosenCategoryItems } from "../redux/action";
+import { setCategoriesInfo, setChosenCategoryItems, setSearchResults } from "../redux/action";
+import { getChosenCategory, getSearchText } from "../../../modules/saga/selectors";
+import { setIsLoading } from "../../homeScreen/redux/action";
 
 export function* workerCategoriesSearchScreen() {
     try {
@@ -19,9 +21,11 @@ export function* watcherCategoriesSearchScreen() {
 
 export function* workerChosenCategoryItems() {
     try {
-        const chosenCategoryName = yield select(state => state.reducerForSearchCategories.chosenCategoryName);
+        yield put(setIsLoading(true));
+        const chosenCategoryName = yield select(getChosenCategory);
         const chosenCategoryItems = yield call(sendRequest, urlFirstPart, chosenCategoryName);
         yield put(setChosenCategoryItems(chosenCategoryItems));
+        yield put(setIsLoading(false));
     } catch (e) {
         console.log('workerChosenCategoryItems error ', e);
     }
@@ -32,11 +36,19 @@ export function* watcherChosenCategoryItems() {
 }
 
 export function* workerSearchItems() {
-    const searchText = yield select(state => state.reducerForSearchCategories.searchText);
-    const chosenCategoryName = yield select(state => state.reducerForSearchCategories.chosenCategoryName);
-    console.log('searchText', searchText);
-    const t = yield call(sendRequest, urlFirstPart, chosenCategoryName, constantForSearch + searchText);
-    console.log('TTTTT', t);
+    try {
+        yield put(setIsLoading(true));
+        const searchText = yield select(getSearchText);
+        const chosenCategoryName = yield select(getChosenCategory);
+        if (searchText) {            
+            const searchResults = yield call(sendRequest, urlFirstPart, chosenCategoryName, 
+                constantForSearch + searchText);
+            yield put(setSearchResults(searchResults));
+        }
+        yield put(setIsLoading(false));
+    } catch (e) {
+        console.log('workerSearchItems error', e);
+    }
 }
 
 export function* watherSearchItems() {

@@ -6,6 +6,7 @@ const initialState = {
     chosenCategoryItems: {},
     isSearch: false,
     searchText: '',
+    searchResults: [],
 }
 
 export const reducerForSearchCategories = (state = initialState, action) => {
@@ -34,6 +35,11 @@ export const reducerForSearchCategories = (state = initialState, action) => {
             return {
                 ...state, 
                 searchText: action.data
+            }
+        case constants.SET_SEARCH_RESULTS:
+            return {
+                ...state,
+                searchResults: action.data
             }
     }
     return state;

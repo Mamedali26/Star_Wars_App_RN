@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, FlatList } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import HeaderText from "../../components/header";
 import MainBtn from "../../components/mainBtn";
 import RandomNewsItem from "../../components/randomNewsItem";
 import { getFavourites } from "../../modules/saga/selectors";
-import { config } from "../../services/config";
+import { styles } from "./styles";
 import { setFavouritesEmpty } from "./redux/action";
 
 const FavouritesScreen = ({ navigation }) => {
@@ -25,9 +25,9 @@ const FavouritesScreen = ({ navigation }) => {
     }
 
     return(
-        <View style={{backgroundColor: config.mainAppColor, flex: 1}}>
+        <View style={styles.container}>
             <HeaderText headerTitle='Favourites' />
-            <View style={{alignItems: 'center'}}>
+            <View style={styles.clearBtnWrapper}>
                 <MainBtn
                     title="CLEAR ALL!"
                     fn={clearFavourites}

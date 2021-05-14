@@ -1,3 +1,15 @@
+export const addToFavourites = (item, favourites, dispatch, setItemToFavourites) => {
+    const checkForFav = favourites?.filter(element => element?.name === item?.name);
+    if (checkForFav?.length === 0) {            
+        dispatch(setItemToFavourites(item));
+    }
+}
+
+export const removeFromFavourites = (item, favourites, dispatch, setItemRemoveFromFavourites) => {
+    const newFavsWithoutRemovedItem = favourites?.filter(element => element?.name !== item?.name);
+    dispatch(setItemRemoveFromFavourites(newFavsWithoutRemovedItem))
+}
+
 export const getRightCategoryForImage = item => {
     let result = '';
     if (item?.title) result = 'films/';

@@ -6,3 +6,6 @@ export const getCategoriesInfo = state => state.reducerForSearchCategories.categ
 export const getRandomNewsItems = state => state.reducerHomeScreen.randomNewsItems;
 export const getIsLoading = state => state.reducerHomeScreen.isLoading;
 export const getFavourites = state => state.reducerFavouritesScreen.favourites;
+export const getSearchResults = state => state.reducerForSearchCategories.searchResults;
+export const getSearchText = state => state.reducerForSearchCategories.searchText;
+export const getIsSearch = state => state.reducerForSearchCategories.isSearch;

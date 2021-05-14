@@ -5,6 +5,7 @@ const initialState = {
     chosenItem: {},
     chosenItemImage: '',
     isLoading: false,
+    isDetailed: false,
 }
 
 export const reducerHomeScreen = (state = initialState, action) => {
