@@ -50,7 +50,6 @@ const ChosenCategoryScreen = ({ navigation }) => {
     const keyExtractor = useCallback(item => item?.name ? item?.name : item?.title, []);
 
     return(
-        console.log(nextPages),
         <View style={styles.container}>
             <View style={styles.searchBar}>
                 <TextInput 
@@ -78,6 +77,7 @@ const ChosenCategoryScreen = ({ navigation }) => {
                 renderItem={renderItems}
                 keyExtractor={keyExtractor}
                 onEndReached={loadMoreContent}
+                onEndReachedThreshold={0.7}
                 maxToRenderPerBatch={4}
                 windowSize={5}
                 ListFooterComponent={nextPages?.[nextPages?.length - 1] ? 

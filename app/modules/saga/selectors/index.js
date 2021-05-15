@@ -1,3 +1,4 @@
+export const getIsSplash = state => state.reducerForSplashScreen.isSplash; 
 export const getChosenItemImage = state => state.reducerHomeScreen.chosenItemImage;
 export const getChosenItem = state => state.reducerHomeScreen.chosenItem;
 export const getChosenCategory = state => state.reducerForSearchCategories.chosenCategoryName;

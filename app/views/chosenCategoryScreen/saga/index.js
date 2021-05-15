@@ -8,10 +8,8 @@ export function* workerChosenCategoryItems() {
     try {
         const chosenCategoryName = yield select(getChosenCategory);
         let pageCount = yield select(state => state.reducerForSearchCategories.pageCount);
-        console.log('pageCount', pageCount);
         const chosenCategoryItems = yield call(sendRequest, urlFirstPart, chosenCategoryName, 
             nextPage + pageCount);
-        console.log('chosenCategoryItems?.next', chosenCategoryItems?.next);
         if (chosenCategoryItems?.next || chosenCategoryItems?.next === null) {
             yield put(setNextPageUrls(chosenCategoryItems?.next));
             yield put(setChosenCategoryItems(chosenCategoryItems?.results));
