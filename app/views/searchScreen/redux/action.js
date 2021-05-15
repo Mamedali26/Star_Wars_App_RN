@@ -39,6 +39,10 @@ export const setNextPageUrls = data => ({
     data,
 });
 
+export const setNextPageUrlsEmpty = () => ({
+    type: constants.SET_NEXT_PAGE_URLS_EMPTY,
+});
+
 export const setPageCount = data => ({
     type: constants.SET_PAGE_COUNT,
     data,

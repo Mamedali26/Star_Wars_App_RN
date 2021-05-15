@@ -38,6 +38,11 @@ export const reducerForSearchCategories = (state = initialState, action) => {
                 ...state,
                 nextPageUrls: [...state.nextPageUrls, action.data]
             }
+        case constants.SET_NEXT_PAGE_URLS_EMPTY:
+            return {
+                ...state,
+                nextPageUrls: initialState.nextPageUrls
+            }
         case constants.SET_IS_SEARCH:
             return {
                 ...state, 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, memo } from "react";
 import { View, Text, TextInput, TouchableOpacity, FlatList, Keyboard, 
     ActivityIndicator } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
@@ -24,12 +24,11 @@ const ChosenCategoryScreen = ({ navigation }) => {
         dispatch(setChosenCategoryItemsSaga());
     }, []);
 
-    const renderItems = ({ item }) => {
-        return <RandomNewsItem 
+    const renderItems = useCallback(
+        ({ item }) => <RandomNewsItem 
             navigation={navigation}
             item={item}
-        />
-    };
+        />, []);
 
     const makeSearch = () => {
         dispatch(setIsSearch(true));
@@ -44,9 +43,11 @@ const ChosenCategoryScreen = ({ navigation }) => {
             let lastUrl = nextPages?.[nextPages?.length - 1];
             let pageNumber = lastUrl?.substring(lastUrl?.lastIndexOf('=') + 1);
             dispatch(setPageCount(pageNumber));
-            dispatch(setChosenCategoryItemsSaga());            
+            dispatch(setChosenCategoryItemsSaga());         
         }
     }
+
+    const keyExtractor = useCallback(item => item?.name ? item?.name : item?.title, []);
 
     return(
         console.log(nextPages),
@@ -75,8 +76,10 @@ const ChosenCategoryScreen = ({ navigation }) => {
             <FlatList
                 data={isSearch ? searchResults?.results : chosenCategoryItems}
                 renderItem={renderItems}
-                keyExtractor={item => item?.name ? item?.name : item?.title}
+                keyExtractor={keyExtractor}
                 onEndReached={loadMoreContent}
+                maxToRenderPerBatch={4}
+                windowSize={5}
                 ListFooterComponent={nextPages?.[nextPages?.length - 1] ? 
                     <ActivityIndicator color={config.COLOR_GOLD} size={40} 
                 /> : <></>}
@@ -85,4 +88,4 @@ const ChosenCategoryScreen = ({ navigation }) => {
     );
 }
 
-export default ChosenCategoryScreen;
+export default memo(ChosenCategoryScreen);

@@ -19,22 +19,6 @@ export function* watcherCategoriesSearchScreen() {
     yield takeEvery(constants.SET_CATEGORIES_SCREEN_SAGA, workerCategoriesSearchScreen);
 }
 
-// export function* workerChosenCategoryItems() {
-//     try {
-//         yield put(setIsLoading(true));
-//         const chosenCategoryName = yield select(getChosenCategory);
-//         const chosenCategoryItems = yield call(sendRequest, urlFirstPart, chosenCategoryName);
-//         yield put(setChosenCategoryItems(chosenCategoryItems));
-//         yield put(setIsLoading(false));
-//     } catch (e) {
-//         console.log('workerChosenCategoryItems error ', e);
-//     }
-// }
-
-// export function* watcherChosenCategoryItems() {
-//     yield takeEvery(constants.SET_CHOSEN_CATEGORY_ITEMS_SAGA, workerChosenCategoryItems);
-// }
-
 export function* workerSearchItems() {
     try {
         yield put(setIsLoading(true));

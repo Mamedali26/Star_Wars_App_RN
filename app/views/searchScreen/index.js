@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ROUTES } from "../../services/routes";
 import { imgLink } from "../../services/restApi";
-import { setChosenCategoryItemsEmpty, setChosenCategoryName, setIsSearch, setPageCount } from "./redux/action";
+import { setChosenCategoryItemsEmpty, setChosenCategoryName, setIsSearch, setNextPageUrlsEmpty, 
+    setPageCount } from "./redux/action";
 import { getCategoriesInfo } from "../../modules/saga/selectors";
 import { styles } from "./styles";
 import { getCategoryImages } from "./logic";
@@ -18,6 +19,7 @@ const SearchScreen = ({ navigation }) => {
         dispatch(setIsSearch(false));
         dispatch(setChosenCategoryItemsEmpty());
         dispatch(setPageCount(1));
+        dispatch(setNextPageUrlsEmpty());
         navigation.navigate(ROUTES.ChosenCategoryScreen);
     }
 
