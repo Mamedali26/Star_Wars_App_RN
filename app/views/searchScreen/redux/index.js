@@ -3,10 +3,12 @@ import { constants } from "./actionTypes";
 const initialState = {
     categoriesInfo: [],
     chosenCategoryName: '',
-    chosenCategoryItems: {},
+    chosenCategoryItems: [],
+    nextPageUrls: [],
     isSearch: false,
     searchText: '',
     searchResults: [],
+    pageCount: 0,
 }
 
 export const reducerForSearchCategories = (state = initialState, action) => {
@@ -24,7 +26,17 @@ export const reducerForSearchCategories = (state = initialState, action) => {
         case constants.SET_CHOSEN_CATEGORY_ITEMS:
             return {
                 ...state,
-                chosenCategoryItems: action.data
+                chosenCategoryItems: [...state.chosenCategoryItems, ...action.data]
+            }
+        case constants.SET_CHOSEN_CATEGORY_ITEMS_EMPTY:
+            return {
+                ...state,
+                chosenCategoryItems: initialState.chosenCategoryItems
+            }
+        case constants.SET_NEXT_PAGE_URLS:
+            return {
+                ...state,
+                nextPageUrls: [...state.nextPageUrls, action.data]
             }
         case constants.SET_IS_SEARCH:
             return {
@@ -40,6 +52,11 @@ export const reducerForSearchCategories = (state = initialState, action) => {
             return {
                 ...state,
                 searchResults: action.data
+            }
+        case constants.SET_PAGE_COUNT:
+            return {
+                ...state,
+                pageCount: action.data
             }
     }
     return state;

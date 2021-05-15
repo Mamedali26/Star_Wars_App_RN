@@ -1,0 +1,3 @@
+export const constants = {
+    SET_CHOSEN_CATEGORY_ITEMS_SAGA: 'SET_CHOSEN_CATEGORY_ITEMS_SAGA',
+}

@@ -29,3 +29,17 @@ export const setSearchResults = data => ({
     type: constants.SET_SEARCH_RESULTS,
     data,
 });
+
+export const setChosenCategoryItemsEmpty = () => ({
+    type: constants.SET_CHOSEN_CATEGORY_ITEMS_EMPTY,
+});
+
+export const setNextPageUrls = data => ({
+    type: constants.SET_NEXT_PAGE_URLS,
+    data,
+});
+
+export const setPageCount = data => ({
+    type: constants.SET_PAGE_COUNT,
+    data,
+});

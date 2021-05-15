@@ -10,6 +10,8 @@ export const constantsForUrl = {
 
 export const constantForSearch = "?search=";
 
+export const nextPage = '?page=';
+
 export const imgLink = 'https://starwars-visualguide.com/assets/img/';
 
 export const sendRequest = async(urlFirstPart, urlSecondPart = '', urlThirdPart = '') => {
