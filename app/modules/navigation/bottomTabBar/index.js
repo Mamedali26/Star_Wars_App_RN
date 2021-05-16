@@ -19,6 +19,7 @@ const BottomTabNavigator = ({ navigation }) => (
             activeBackgroundColor: config.COLOR_WHITE,
             inactiveBackgroundColor: config.mainAppColor,
         }}
+        sceneContainerStyle={{flex: 1, backgroundColor: 'transparent'}}
     >
         <BottomTabBar.Screen 
             name={ROUTES.HomeScreen}

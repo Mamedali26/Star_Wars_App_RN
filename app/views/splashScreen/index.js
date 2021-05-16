@@ -39,7 +39,7 @@ const SplashScreen = () => {
         Animated.sequence([
             createAnimation(fadeIn, 1000, Easing.ease),
             createAnimation(logoAppeared, 1500, Easing.ease),
-            createAnimation(logoScaleOut, 3300, Easing.ease, 500),
+            createAnimation(logoScaleOut, 2500, Easing.ease),
         ]).start();
     }
 

@@ -32,7 +32,7 @@ export function* workerRandomNewsHomeScreen() {
             randomVehicleItem, randomSpeciesItem, randomStarshipItem];
 
         yield put(setRandomNewsItems(randomNewsItems));
-        yield delay(5300);
+        yield delay(4900);
         yield put(setIsSplash(false));
     } catch (e) {
         console.log('workerRandomNewsHomeScreen error ', e);
