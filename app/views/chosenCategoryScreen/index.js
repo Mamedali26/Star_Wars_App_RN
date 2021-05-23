@@ -80,7 +80,7 @@ const ChosenCategoryScreen = ({ navigation }) => {
                 onEndReachedThreshold={0.7}
                 maxToRenderPerBatch={4}
                 windowSize={5}
-                ListFooterComponent={nextPages?.[nextPages?.length - 1] ? 
+                ListFooterComponent={nextPages?.[nextPages?.length - 1] && !isSearch ? 
                     <ActivityIndicator color={config.COLOR_GOLD} size={40} 
                 /> : <></>}
             />}
