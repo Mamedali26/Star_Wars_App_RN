@@ -29,19 +29,19 @@ const SearchScreen = ({ navigation }) => {
                 <ScrollView contentContainerStyle={styles.scrollWrapper}>
                     {categoriesInfo?.map((item, index) => {
                         return (
-                            <View key={index} style={styles.categoryWrapper}>   
-                                <Image  
-                                        source={{uri: imgLink + 'categories/' + 
-                                            getCategoryImages(item[0]) + '.jpg'}}
-                                        style={styles.categoryImage}
-                                        resizeMode='contain'
-                                />                             
+                            <View key={index} style={styles.categoryWrapper}>  
                                 <TouchableOpacity 
                                     onPress={() => setCategoryAndNavigate(item[0])}
-                                >
-                                        <Text style={styles.clickToChooseCategoryText}>
-                                            {item[0].toUpperCase()}
-                                        </Text>
+                                > 
+                                    <Image  
+                                            source={{uri: imgLink + 'categories/' + 
+                                                getCategoryImages(item[0]) + '.jpg'}}
+                                            style={styles.categoryImage}
+                                            resizeMode='contain'
+                                    />                          
+                                    <Text style={styles.clickToChooseCategoryText}>
+                                        {item[0].toUpperCase()}
+                                    </Text>
                                 </TouchableOpacity>                                
                             </View>
                         )

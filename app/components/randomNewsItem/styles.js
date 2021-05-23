@@ -12,11 +12,12 @@ export const styles = StyleSheet.create({
         height: 400,
         borderRadius: 30,
         marginBottom: 10,
+        alignItems: 'center',
     },
     itemName: {
         fontSize: 27, 
         backgroundColor: config.COLOR_BLACK,
-        width: '95%',
+        width: '88%',
         borderBottomEndRadius: 50,
         color: config.COLOR_WHITE,
         textAlign: 'center',

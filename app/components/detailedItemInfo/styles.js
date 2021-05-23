@@ -33,7 +33,6 @@ export const styles = StyleSheet.create({
     textInfo: {
         fontSize: 24, 
         color: config.COLOR_WHITE,
-        textAlign: 'center',
         borderBottomWidth: 1,
         lineHeight: 36,
     },

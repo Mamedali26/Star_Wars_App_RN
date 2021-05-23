@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import { getRightCategoryForImage, getNumberForImage, getRightImage, addToFavourites, 
     removeFromFavourites } from "./logic";
 import { styles } from './styles';
@@ -12,7 +12,6 @@ import { setItemToFavourites, setItemRemoveFromFavourites } from "../../views/fa
 import { config } from "../../services/config";
 import { getFavourites } from "../../modules/saga/selectors";
 import RemoveFromFavouritesSVG from "../../assets/svg/removeFromFavouritesSVG";
-import MainBtn from "../mainBtn";
 import AddOrRemoveFavBtn from "../addOrRemoveFavBtn";
 
 const StarWarsItem = ({ item, navigation }) => {
@@ -32,12 +31,14 @@ const StarWarsItem = ({ item, navigation }) => {
 
     return (
         <View style={styles.itemContainer}>
-            <Image 
-                source={{uri: getRightImage(item, item?.url, getNumberForImage, 
-                    getRightCategoryForImage, imgLink)}}
-                style={styles.itemImage}
-                resizeMode="stretch"
-            />
+            <TouchableOpacity style={styles.itemImage} onPress={chooseItemAndNavigate}>
+                <Image 
+                    source={{uri: getRightImage(item, item?.url, getNumberForImage, 
+                        getRightCategoryForImage, imgLink)}}
+                    style={styles.itemImage}
+                    resizeMode="stretch"
+                />
+            </TouchableOpacity>
             <Text style={styles.itemName}>
                 {item?.name ? item?.name : item?.title}
             </Text>
@@ -51,10 +52,6 @@ const StarWarsItem = ({ item, navigation }) => {
                     svg={<RemoveFromFavouritesSVG color={config.COLOR_RED} 
                         width={24} height={24} />}
                     onPress={() => removeFromFavourites(item, favourites, dispatch, setItemRemoveFromFavourites)}
-                />
-                <MainBtn 
-                    title="Click To See More!"
-                    fn={chooseItemAndNavigate}
                 />
             </View>
         </View>

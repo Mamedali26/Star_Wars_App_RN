@@ -7,17 +7,17 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     subContainer: {
-        marginHorizontal: 15,
+        marginHorizontal: 10,
     },
     scrollWrapper: {
         paddingVertical: 20,
     },
     categoryWrapper: {
-        marginBottom: 10,
+        marginBottom: 15,
     },
     categoryImage: {
         width: '100%',
-        height: 200,
+        height: 185,
     },
     clickToChooseCategoryText: {
         textAlign: 'center', 

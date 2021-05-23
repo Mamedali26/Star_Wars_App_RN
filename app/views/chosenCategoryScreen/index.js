@@ -35,7 +35,7 @@ const ChosenCategoryScreen = ({ navigation }) => {
         dispatch(setSearchText(searchText));
         dispatch(setSearchItemsSaga());
         Keyboard.dismiss();
-        textInput.current.clear();
+        //textInput.current.clear();
     }
 
     const loadMoreContent = () => {
